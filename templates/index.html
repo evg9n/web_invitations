@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HELLO WORLD ! ! !</title>
+    <script src="{% static 'js/signature.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/signature.css' %}">
+    {% block metas %}{% endblock %}
+    {% block title %}{% endblock %}
+</head>
+<body>
+    <div class="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div class="sm:mx-auto sm:w-full sm:max-w-md text-center">
+            <h1 class="text-5xl">
+                HELLO WORLD ! ! !
+            </h1>
+        </div>
+    </div>
+</body>
+</html>
+

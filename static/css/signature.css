@@ -1,0 +1,7 @@
+.eea-snowflake {
+    position: fixed;
+    color: #000000;
+    user-select: none;
+    pointer-events: none;
+    font-size: 24px;
+}
