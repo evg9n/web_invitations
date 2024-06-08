@@ -46,13 +46,11 @@ INSTALLED_APPS = [
 ]
 
 # Дополнительные приложения
-INSTALLED_APPS += [
-
-]
+INSTALLED_APPS += []
 
 # мои приложения
 INSTALLED_APPS += [
-
+    'guests.apps.GuestsConfig',
 ]
 
 MIDDLEWARE = [
@@ -185,7 +183,7 @@ LOGGING = {
             'filename': BASE_DIR / 'logs' / f'django_{datetime.now().strftime("%Y-%m-%d")}.log',
             'when': 'midnight',
             'interval': 1,
-            'backupCount': 7, # Количество файлов лога для хранения
+            'backupCount': 7,
             'encoding': 'utf8',
         },
     },

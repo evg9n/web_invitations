@@ -1,21 +1,21 @@
 version: '3.9'
 services:
-  postgres-django-project:
+  postgres-web-invitations:
     image: postgres:latest
-    container_name: postgres-django-project
+    container_name: postgres-web-invitations
     restart: unless-stopped
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - ./data:/var/lib/postgresql/data
     env_file:
       - env/docker.env
 
-  django-project:
+  web-invitations:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: django-project
+    container_name: web-invitations
     restart: unless-stopped
     env_file:
       - env/.env
@@ -24,5 +24,5 @@ services:
       - ./media/:/app/media
       - ./static/:/app/static
     depends_on:
-      - postgres-django-project
+      - postgres-web-invitations
     command: gunicorn project.wsgi:application --bind 127.0.0.1:8000 --log-level debug

@@ -60,7 +60,7 @@ cover/
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
-data/*
+data
 
 # Flask stuff:
 instance/
@@ -164,8 +164,9 @@ logs/*
 !logs/.gitkeep
 
 # django static
-staticfiles/*
+staticfiles
 
+# django media
 # django media
 media/*
 !media/.gitkeep
