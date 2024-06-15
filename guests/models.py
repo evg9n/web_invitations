@@ -20,6 +20,13 @@ class DrinkModel(BaseModel):
     """
     name = models.CharField(max_length=128, verbose_name='Напиток')
 
+    def __str__(self):
+        return f'{self.name}'
+
+    class Meta:
+        verbose_name = 'напиток'
+        verbose_name_plural = 'напитки'
+
 
 class CityModel(BaseModel):
     """
@@ -54,7 +61,15 @@ class GuestModel(BaseModel):
                                             'Если будет более двух гостей, то нужно обощить их общей фамилией, '
                                             'если она общая, иначе нужно на каждого гостя сделать свою карточку',
                                   verbose_name='Имя(Фамилия) гостя(ей)')
+    CHOICE_SEX = (
+        ('она', 'она'),
+        ('он', 'он'),
+        ('они', 'они'),
+    )
+    sex = models.CharField(max_length=3, choices=CHOICE_SEX, verbose_name='Пол первого гостя',
+                           help_text='Если их будет более одно, то установить нужно "они"')
     visit_first_guest = models.CharField(max_length=3, choices=CHOICE_YES_OR_NO, verbose_name='Придет?')
+
     name_second = models.CharField(max_length=128, null=True, blank=True, validators=[check_name],
                                    help_text="В этом поле ожидается парень/девушка/супруг/супруга первого гостя")
     visit_second_guest = models.CharField(max_length=3, choices=CHOICE_YES_OR_NO, verbose_name='Придет?')
@@ -63,11 +78,16 @@ class GuestModel(BaseModel):
     from_city = models.ManyToManyField(CityModel, verbose_name='С какого города забрать на мероприятие?')
     from_transfer = models.CharField(max_length=3, choices=CHOICE_YES_OR_NO,
                                      verbose_name='Нужен трансфер С мероприятия?')
-    to_city = models.ManyToManyField(CityModel, verbose_name='В какой город отвезти после мероприятия?')
-    drinks = models.ManyToManyField(DrinkModel, verbose_name='Какие напитки будут?')
+    to_city = models.ManyToManyField(CityModel, related_name='cites',
+                                     verbose_name='В какой город отвезти после мероприятия?')
+    drinks = models.ManyToManyField(DrinkModel, related_name='drinks', verbose_name='Какие напитки будут?')
     date_time_answer = models.DateTimeField(blank=True, null=True, editable=False, verbose_name='Дата и время ответа')
     date_time_answer_edit = models.DateTimeField(blank=True, null=True, editable=False,
                                                  verbose_name='Дата и время редактирования ответа')
 
     def __str__(self):
         return f"{self.name}"
+
+    class Meta:
+        verbose_name = 'гость'
+        verbose_name_plural = 'гости'

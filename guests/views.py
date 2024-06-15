@@ -1,3 +1,9 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def invitation(request):
+    method = request.method
+
+    # if method == "GET":
+    return render(request, 'invitation.html')
+    # return render(request, 'index.html')

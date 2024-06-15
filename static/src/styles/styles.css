@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Стилизация фона с помощью шума */
+.bg-craft-paper {
+    background-image: url('/static/img/kiwihug-3gifzboyZk0-unsplash\ \(1\).jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}

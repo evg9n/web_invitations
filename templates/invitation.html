@@ -1,0 +1,177 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+    <title>TEST</title>    
+{% endblock title %}
+
+{% block scripts %}
+
+{% endblock scripts %}
+
+{% block content %}
+    <span id="date" class="hidden">July 24, 2024 13:00:00</span>
+    <div class="mt-10 flex flex-col justify-center items-center text-center">
+        <span>Вы приглашены на свадьбу</span>
+        <div class="mt-5 flex flex-col">
+            <span class="text-4xl">Эдуарда</span>
+            <span class="text-xl">и</span>
+            <span class="text-4xl">Натальи</span>
+        </div>
+    </div>
+    <div class="mt-10 flex flex-row justify-center items-center">
+        <div class="flex flex-row justify-center items-center gap-10">
+            <div class="text-center border-t border-b py-2 border-black w-32">
+                <span class="uppercase">СРЕДА</span>
+            </div>
+            <div class="flex flex-col text-center">
+                <span>Июль</span>
+                <span>24</span>
+            </div>
+            <div class="text-center border-t border-b py-2 border-black w-32">
+                <span class="uppercase">13:00</span>
+            </div>
+        </div>
+    </div>
+    <div class="mt-5 text-center">
+        <div id="countdown" class="flex flex-row justify-center items-center font-bold gap-10">
+            <div id="days" class="flex flex-col text-center"></div> 
+            <div id="hours" class="flex flex-col text-center"></div> 
+            <div id="minutes" class="flex flex-col text-center"></div> 
+            <div id="seconds" class="flex flex-col text-center"></div> 
+            
+        </div>
+        <script src="{% static 'js/countdown.js' %}"></script> 
+    </div>
+    <div class="mt-10 flex flex-col justify-center items-center text-center">
+        <h1>Дорогие Емельяновы!</h1>
+        <span class="mt-2 md:w-1/2">
+            Мы рады сообщить Вам, что 24.07.2024 состоится самое главное торжество в нашей жизни - день нашей свадьбы!
+            Приглашаем Вас разделить с нами радость этого незабываемого дня.
+        </span>
+    </div>
+    <div class="mt-10 flex flex-col justify-center items-center text-center">
+        <span>Будем ждать</span>
+        <span class="mt-2 md:w-1/2">
+            24.07.2024
+        </span>
+        <span class="mt-2 md:w-1/2">
+            13:00
+        </span>
+        <span class="mt-2 md:w-1/2">
+            аываыва ыва ываыва 
+        </span>
+    </div>
+    <div class="mt-10 flex flex-col justify-center items-center">
+        <span class="text-center mb-5">Свадебное расписание</span>
+        <div class="mb-1 flex flex-row w-full md:w-1/3 gap-11">
+            <span class="w-1/4">13:00</span>
+            <span class="w-3/4 flex flex-col text-left">Роспись dfvdlkf dflv dlfj</span>
+        </div>
+        <div class="mb-1 flex flex-row w-full md:w-1/3 gap-11">
+            <span class="w-1/4">14:00</span>
+            <span class="w-3/4 flex flex-col text-left">fsdfsdfsdf sd sdfs</span>
+        </div>
+        <div class="mb-1 flex flex-row w-full md:w-1/3 gap-11">
+            <span class="w-1/4">15:00</span>
+            <span class="w-3/4 flex flex-col text-left">dflv dlfj</span>
+        </div>
+        <div class="mb-1 flex flex-row w-full md:w-1/3 gap-11">
+            <span class="w-1/4">16:00</span>
+            <span class="w-3/4 flex flex-col text-left">sddlkf dflv dlfj</span>
+        </div>
+    </div>
+    <div class="p-8 rounded-lg max-w-md w-full">
+        <form id="attendanceForm" class="flex flex-col" method="post">
+            {% csrf_token %}
+            <span class="text-xl">Вы придете?</span>
+            <label class="inline-flex items-center">
+                <input type="radio" name="attendance" value="yes" class="" required/>
+                <span class="ml-2">Да</span>
+            </label>
+            <label class="inline-flex items-center">
+                <input type="radio" name="attendance" value="no" class="" required/>
+                <span class="ml-2">Нет</span>
+            </label>
+            <div id="additional-fields" class="flex flex-col mt-4 hidden">
+                <!-- Дополнительные поля -->
+                <div id="good-response" class="mt-4">
+                Мы очень рады!
+                </div>
+                
+                <span class="text-xl">Вам понадобиться трансфер на мероприятие?</span>
+                <label class="inline-flex items-center">
+                    <input type="radio" name="to_transfer" value="yes" class="" required/>
+                    <span class="ml-2">Да</span>
+                </label>
+                <label class="inline-flex items-center">
+                    <input type="radio" name="to_transfer" value="no" class="" required/>
+                    <span class="ml-2">Нет</span>
+                </label>
+                <div id="formFromCity" class="hidden">
+                    <span class="text-xl">С какого города?</span>
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="from_city" value="yes" class="" required/>
+                        <span class="ml-2">Менделеевск</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="from_city" value="no" class="" required/>
+                        <span class="ml-2">Набережные Челны</span>
+                    </label>
+                </div>
+
+                <span class="text-xl">Вам понадобиться трансфер с мероприятие?</span>
+                <label class="inline-flex items-center">
+                    <input type="radio" name="from_transfer" value="yes" class="" required/>
+                    <span class="ml-2">Да</span>
+                </label>
+                <label class="inline-flex items-center">
+                    <input type="radio" name="from_transfer" value="no" class="" required/>
+                    <span class="ml-2">Нет</span>
+                </label>
+                
+                <div id="formToCity" class="hidden">
+                    <span class="text-xl">С какого города?</span>
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="to_city" value="yes" class="" required/>
+                        <span class="ml-2">Менделеевск</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="to_city" value="no" class="" required/>
+                        <span class="ml-2">Набережные Челны</span>
+                    </label>
+                </div>
+
+                <span class="text-xl">Какие напитки предпочитаете?</span>                
+                <div>
+                    <input type="checkbox" id="scales" name="scales"/>
+                    <label for="scales">Scales</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="scales" name="scales"/>
+                    <label for="scales">Scales</label>
+                </div>
+                
+                {% comment %} <input type="text" placeholder="Ваше имя" class="mt-2 p-2 w-full border rounded">
+                <input type="email" placeholder="Ваш email" class="mt-2 p-2 w-full border rounded">
+                <input type="text" placeholder="Компания" class="mt-2 p-2 w-full border rounded">
+                <input type="text" placeholder="Должность" class="mt-2 p-2 w-full border rounded">
+                <input type="text" placeholder="Комментарий" class="mt-2 p-2 w-full border rounded"> {% endcomment %}
+            </div>
+            <div id="sad-response" class="mt-4 hidden">
+                Очень жаль, что вы не сможете присоединиться к нам.
+            </div>
+            <button type="submit" class="mt-4 bg-white font-bold py-2 px-4 rounded">Отправить</button>
+        </form>
+    </div>    
+    <script src="{% static 'js/form.js' %}"></script> 
+
+    <div id="map" class="h-96 w-full md:w-3/4 lg:w-1/2 mx-auto my-4 shadow-lg rounded-lg"></div>
+
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=fdsfF32rasdf&lang=ru_RU" type="text/javascript"></script>
+
+    <script src="{% static 'js/map.js' %}"></script>
+        
+    
+
+{% endblock content %}
