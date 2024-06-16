@@ -1,15 +1,19 @@
+var width = parseFloat(document.getElementById('width').textContent);
+var longitude = parseFloat(document.getElementById('longitude').textContent);
+var name_label = document.getElementById('name_label').textContent;
+
 ymaps.ready(init);
 function init(){
 var myMap = new ymaps.Map("map", {
-    center: [55.73956396894548,52.00157879743234],
+    center: [width,longitude],
     zoom: 12
 });
 
 var myPlacemark = new ymaps.Placemark(
-    [55.76, 37.64],
+    [width,longitude],
     {
-        hintContent: 'Москва!',
-        balloonContent: 'Столица России'
+        hintContent: name_label,
+        balloonContent: name_label
     }
 );
 

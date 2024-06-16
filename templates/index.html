@@ -2,21 +2,39 @@
 {% load static %}
 <html lang="ru">
 <head>
-    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/signature.css' %}">
-    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
-    <script src="{% static 'js/signature.js' %}"></script>
-    {% block scripts %}{% endblock scripts %}
+    
+    <link rel="stylesheet" href="{% static 'css/load.css' %}">      
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HELLO WORLD ! ! !</title>
     {% block metas %}{% endblock %}
     {% block title %}{% endblock %}
 </head>
 <body class="bg-white">
-    <div class="flex flex-col my-10 mx-8">
+    <div id="loading-screen" class="bg-white min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div class="sm:mx-auto sm:w-full sm:max-w-md text-center">
+            <h2 class="text-4xl font-extrabold text-gray-900 sm:text-5xl">
+                <img src="{% static 'img/heart-svgrepo-com.svg' %}" class="" alt="Здесь должно быть сердечко) Но что-то пошло не так...">
+            </h2>
+        </div>
+    </div>
+    {% comment %} <div id="loading-screen" class="flex">
+        <img src="{% static 'img/heart-svgrepo-com.svg' %}" alt="Свадебная анимация">
+    </div> {% endcomment %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet"> 
+    <link rel="stylesheet" href="{% static 'css/signature.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animation.css' %}">
+    <link rel="stylesheet" href="{% static 'css/load.css' %}">
+    <script src="{% static 'js/signature.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    {% block scripts %}{% endblock scripts %}
+    <div id="content" class="mx-5 md:mx-10 font-mono hidden">
         {% block content %}{% endblock %}
     </div>
+    <div id="particles-js"></div>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="{% static 'js/load.js' %}"></script>
 </body>
 </html>
 

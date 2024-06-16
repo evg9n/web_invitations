@@ -13,17 +13,17 @@ document.addEventListener('keydown', function(e) {
 });
 
 function startSnowing() {
-    spacePressCount = 0; // Сброс счётчика нажатий Enter
+    spacePressCount = 0;
     if (snowInterval) {
-        return; // Если снег уже идёт, не начинать заново
+        return;
     }
 
     snowInterval = setInterval(createSnowflake, 100);
 
     setTimeout(function() {
-        clearInterval(snowInterval); // Останавливаем создание новых снежинок
-        snowInterval = null; // Сбрасываем переменную интервала
-    }, 10000); // Задаём таймер на 10 секунд
+        clearInterval(snowInterval);
+        snowInterval = null;
+    }, 10000);
 }
 
 function createSnowflake() {
@@ -40,7 +40,7 @@ function createSnowflake() {
 
 function animateSnowflake(flake) {
     let posY = 0;
-    const fallSpeed = Math.random() * 5 + 2; // Скорость падения снежинки
+    const fallSpeed = Math.random() * 5 + 2;
 
     function fall() {
         posY += fallSpeed;
@@ -49,7 +49,7 @@ function animateSnowflake(flake) {
         if (posY < window.innerHeight) {
             requestAnimationFrame(fall);
         } else {
-            flake.remove(); // Удаляем снежинку после того, как она вышла за пределы экрана
+            flake.remove();
         }
     }
 

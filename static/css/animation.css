@@ -1,0 +1,16 @@
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    z-index: -1;
+}
+.sad-text {
+    position: fixed;
+    color: #000000;
+    user-select: none;
+    pointer-events: none;
+    font-size: 24px;
+}

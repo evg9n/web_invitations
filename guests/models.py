@@ -1,5 +1,6 @@
 from django.db import models
 
+from guests.utils import cyrillic_to_slug
 from guests.validators import check_name
 
 
@@ -12,6 +13,22 @@ class BaseModel(models.Model):
 
     class Meta:
         abstract = True  # не создавать таблицу в базе данных
+
+
+class EventModel(BaseModel):
+    """
+    Модель события
+    """
+    name = models.CharField(max_length=128, unique=True, verbose_name='Имя события')
+    description = models.CharField(max_length=256, verbose_name='Описание')
+    time_event = models.TimeField(unique=True, verbose_name='Время начала события')
+
+    def __str__(self):
+        return f"{self.name}"
+
+    class Meta:
+        verbose_name = "событие"
+        verbose_name_plural = 'события'
 
 
 class DrinkModel(BaseModel):
@@ -56,37 +73,45 @@ class GuestModel(BaseModel):
         ('да', 'да'),
         ('нет', 'нет'),
     )
-    name_first = models.CharField(max_length=128, validators=[check_name],
-                                  help_text='Имя первого гостя. Будет отображаться в приветствии.'
-                                            'Если будет более двух гостей, то нужно обощить их общей фамилией, '
-                                            'если она общая, иначе нужно на каждого гостя сделать свою карточку',
+    name_guest = models.CharField(max_length=128, validators=[check_name],
+                                  help_text='Добавь именена/имя сразу с приветсвием, например: "Дорогие Ивановы", '
+                                            '"Дорогие Екатерина и Владимир", "Дорогой Дмитрий", "Дорогая Светалана"',
                                   verbose_name='Имя(Фамилия) гостя(ей)')
-    CHOICE_SEX = (
-        ('она', 'она'),
-        ('он', 'он'),
-        ('они', 'они'),
-    )
-    sex = models.CharField(max_length=3, choices=CHOICE_SEX, verbose_name='Пол первого гостя',
-                           help_text='Если их будет более одно, то установить нужно "они"')
-    visit_first_guest = models.CharField(max_length=3, choices=CHOICE_YES_OR_NO, verbose_name='Придет?')
+    # CHOICE_SEX = (
+    #     ('она', 'она'),
+    #     ('он', 'он'),
+    #     ('они', 'они'),
+    # )
+    # sex = models.CharField(max_length=3, choices=CHOICE_SEX, verbose_name='Пол первого гостя',
+    #                        help_text='Если их будет более одно, то установить нужно "они"')
+    visit = models.CharField(max_length=3, null=True, blank=True, choices=CHOICE_YES_OR_NO, verbose_name='Придут?')
 
-    name_second = models.CharField(max_length=128, null=True, blank=True, validators=[check_name],
-                                   help_text="В этом поле ожидается парень/девушка/супруг/супруга первого гостя")
-    visit_second_guest = models.CharField(max_length=3, choices=CHOICE_YES_OR_NO, verbose_name='Придет?')
-    to_transfer = models.CharField(max_length=3, choices=CHOICE_YES_OR_NO,
+    # name_second = models.CharField(max_length=128, null=True, blank=True, validators=[check_name],
+    #                                help_text="В этом поле ожидается парень/девушка/супруг/супруга первого гостя",
+    #                                verbose_name='имя второго гостя')
+    to_transfer = models.CharField(max_length=3,  null=True, blank=True, choices=CHOICE_YES_OR_NO,
                                    verbose_name='Нужен трансфер НА мероприятие?')
-    from_city = models.ManyToManyField(CityModel, verbose_name='С какого города забрать на мероприятие?')
-    from_transfer = models.CharField(max_length=3, choices=CHOICE_YES_OR_NO,
+    from_city = models.ManyToManyField(CityModel, blank=True,
+                                       verbose_name='С какого города забрать на мероприятие?')
+    from_transfer = models.CharField(max_length=3,  null=True, blank=True, choices=CHOICE_YES_OR_NO,
                                      verbose_name='Нужен трансфер С мероприятия?')
-    to_city = models.ManyToManyField(CityModel, related_name='cites',
+    to_city = models.ManyToManyField(CityModel, blank=True, related_name='cites',
                                      verbose_name='В какой город отвезти после мероприятия?')
-    drinks = models.ManyToManyField(DrinkModel, related_name='drinks', verbose_name='Какие напитки будут?')
+    drinks = models.ManyToManyField(DrinkModel, related_name='drinks', blank=True,
+                                    verbose_name='Какие напитки будут?')
     date_time_answer = models.DateTimeField(blank=True, null=True, editable=False, verbose_name='Дата и время ответа')
     date_time_answer_edit = models.DateTimeField(blank=True, null=True, editable=False,
                                                  verbose_name='Дата и время редактирования ответа')
 
     def __str__(self):
         return f"{self.name}"
+
+    def save(self, *args, **kwargs):
+        self.slug = cyrillic_to_slug(self.name)
+        super(GuestModel, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return f"/{self.slug}"
 
     class Meta:
         verbose_name = 'гость'
