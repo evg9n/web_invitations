@@ -1,28 +1,52 @@
-version: '3.9'
-services:
-  postgres-web-invitations:
-    image: postgres:latest
-    container_name: postgres-web-invitations
-    restart: unless-stopped
-    ports:
-      - "5433:5432"
-    volumes:
-      - ./data:/var/lib/postgresql/data
-    env_file:
-      - env/docker.env
+version: "3.9"
 
-  web-invitations:
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data_postgres:/var/lib/postgresql/data
+    env_file:
+      - ./env/docker.env
+    networks:
+      - network_my
+
+  web:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: web-invitations
-    restart: unless-stopped
-    env_file:
-      - env/.env
+    container_name: web
+    restart: always
+    ports:
+      - "8000:8000"
     volumes:
-      - ./logs/:/app/logs
-      - ./media/:/app/media
-      - ./static/:/app/static
+      - ./media:/app/media
+      - ./staticfiles:/app/staticfiles
+    command: gunicorn project.wsgi:application --bind 0.0.0.0:8000
     depends_on:
-      - postgres-web-invitations
-    command: gunicorn project.wsgi:application --bind 127.0.0.1:8000 --log-level debug
+      - postgres
+    networks:
+      - network_my
+
+  static-web-invitations:
+    image: nginx:1.25.4
+    container_name: static-web-invitations
+    restart: always
+    ports:
+      - "8001:80"
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./staticfiles:/var/www/nginx/static
+      - ./media:/var/www/nginx/media
+      - ./nginx_logs:/var/log/nginx
+    depends_on:
+      - web
+    networks:
+      - network_my
+
+networks:
+  network_my:
+    external: true
