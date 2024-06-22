@@ -5,6 +5,11 @@
     <title>{{ guest.name }}</title>    
 {% endblock title %}
 
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/dress-code.css' %}">
+    <link rel="stylesheet" href="{% static 'css/calendar.css' %}">
+{% endblock links %}
+
 {% block scripts %}
 
 {% endblock scripts %}
@@ -14,15 +19,86 @@
     <span id="width" class="hidden">{{ width }}</span>
     <span id="longitude" class="hidden">{{ longitude }}</span>
     <span id="name_label" class="hidden">{{ name_label }}</span>
-    <div class="mt-10 flex flex-col justify-center items-center text-center">
-        <span>Вы приглашены на свадьбу</span>
-        <div class="mt-5 flex flex-col">
-            <span class="text-4xl">{{ groom }}</span>
-            <span class="text-xl">и</span>
-            <span class="text-4xl">{{ bride }}</span>
+    {% comment %} Обложка {% endcomment %}
+    <div class="mt-10 text-center">
+        <div class="relative">
+            <span class="text-[10rem] leading-none text-gray-400">{{ groom | slice:":1"}}{{ bride | slice:":1"}}</span>
+            <span class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-black text-3xl whitespace-nowrap">{{ groom }} и {{ bride }}</span>
         </div>
+    </div>    
+    {% comment %} Обращение к гостю {% endcomment %}
+    <div class="mt-10 flex flex-col justify-center items-center text-center">
+        <h1 class="font-Great text-2xl great-vibes-regula">{{ guest.name_guest }}!</h1>
+        <span class="mt-2 md:w-1/2">
+            От всего сердца приглашаем Вас на очень радостное и важное для нас событие - рождение нашей семьи!
+            <br>
+            Будем рады, если вы разделите этот счастливый и долгожданный с нами и подарите нам свои улыбки!
+        </span>
     </div>
-    <div class="mt-10 flex flex-row justify-center items-center">
+    {% comment %} Календарь {% endcomment %}
+    <div class="mt-10 flex flex-col justify-center items-center text-center">
+        <h1 id="monthYear"></h1>
+        <div class="calendar" id="calendar"></div>
+        <script src="{% static 'js/calendar.js' %}"></script>
+    </div>
+    
+    {% comment %} Фото колец {% endcomment %}
+    <div class="mt-1 flex flex-col justify-center items-center text-center">
+        <img src="{% static 'img/wedding-1335649_640.png' %}" class="w-32 h-auto" alt="Здесь должно быть фото колец) Но что-то пошло не так...">
+    </div>
+
+    {% comment %} Место проведения {% endcomment %}
+    <div class="mt-10 flex flex-col justify-center items-center text-center">
+        <h2 class="text-2xl">Место проведения</h2>
+        {% comment %} <span class="mt-2 md:w-1/2">
+            {{ full_date }}
+        </span>
+        <span class="mt-2 md:w-1/2">
+            {{ time }}
+        </span> {% endcomment %}
+        <span class="mt-2 md:w-1/2">
+            {{ place }}
+        </span>
+    </div>
+    {% comment %} Расписание  {% endcomment %}
+    {% if events %}
+    <div class="mt-10 md:mx-81 flex flex-col justify-center items-center border border-2 border-black px-2 rounded-md">
+        <h2 class="text-2xl text-center mb-5">Программа дня</h2>
+        {% for event in events %}
+        <div class="mb-1 flex flex-row justify-center items-center w-full md:w-3/4 gap-11">
+            <span class="w-1/4">{{ event.time_event }}</span>
+            <span class="w-3/4 flex flex-col text-left">{{ event.description }}</span>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% comment %} Дресс-код {% endcomment %}
+    <div class="mt-10 flex flex-col justify-center items-center text-center">
+        {% comment %} <div class="max-w-md mx-auto bg-white shadow-md rounded-lg p-6"> {% endcomment %}
+        <h2 class="text-2xl text-center mb-4">Дресс-код</h2>
+        <span class="text-center mb-4">
+            Для нас главное - ваше присутсвие!
+            <br>
+            Но будем рады, если вы придержитесь цветовой палитры вечера:
+        </span>
+        <div class="grid grid-cols-3 gap-4">
+            <div class="color-block color1"></div>
+            <div class="color-block color2"></div>
+            <div class="color-block color3"></div>
+            <div class="color-block color4"></div>
+            <div class="color-block color5"></div>
+            <div class="color-block color6"></div>
+            <div class="color-block color7"></div>
+            <div class="color-block color8"></div>
+            <div class="color-block color9"></div>
+            <div class="color-block color10"></div>
+            <div class="color-block color11"></div>
+            <div class="color-block color12"></div>
+        </div>
+        {% comment %} </div> {% endcomment %}
+    </div>
+    {% comment %} Дата проведения {% endcomment %}
+    {% comment %} <div class="mt-10 flex flex-row justify-center items-center">
         <div class="flex flex-row justify-center items-center gap-10">
             <div class="text-center border-t border-b py-2 border-black w-32">
                 <span class="uppercase">{{ name_week_day }}</span>
@@ -35,66 +111,38 @@
                 <span class="uppercase">{{ time }}</span>
             </div>
         </div>
-    </div>
-    <div class="mt-5 text-center">
-        <div id="countdown" class="flex flex-row justify-center items-center font-bold gap-10">
-            <div id="days" class="flex flex-col text-center"></div> 
-            <div id="hours" class="flex flex-col text-center"></div> 
-            <div id="minutes" class="flex flex-col text-center"></div> 
-            <div id="seconds" class="flex flex-col text-center"></div> 
-            
-        </div>
-        <script src="{% static 'js/countdown.js' %}"></script> 
-    </div>
-    <div class="mt-10 flex flex-col justify-center items-center text-center">
-        <h1 class="text-xl">{{ guest.name_guest }}!</h1>
-        <span class="mt-2 md:w-1/2">
-            Мы рады сообщить Вам, что {{ full_date }} состоится самое главное торжество в нашей жизни - день нашей свадьбы!
-            Приглашаем Вас разделить с нами радость этого незабываемого дня.
-        </span>
-    </div>
-    <div class="mt-10 flex flex-col justify-center items-center text-center">
-        <span>Будем ждать</span>
-        <span class="mt-2 md:w-1/2">
-            {{ full_date }}
-        </span>
-        <span class="mt-2 md:w-1/2">
-            {{ time }}
-        </span>
-        <span class="mt-2 md:w-1/2">
-            {{ place }}
-        </span>
-    </div>
-    {% if events %}
-    <div class="mt-10 md:mx-96 flex flex-col justify-center items-center border border-2 border-black px-2 rounded-md">
-        <span class="text-center mb-5 text-xl">Свадебное расписание</span>
-        {% for event in events %}
-        <div class="mb-1 flex flex-row w-full md:w-1/3 gap-11">
-            <span class="w-1/4">{{ event.time_event }}</span>
-            <span class="w-3/4 flex flex-col text-left">{{ event.description }}</span>
-        </div>
-        {% endfor %}
-    </div>
-    {% endif %}
+    </div> {% endcomment %}
+    {% if guest.visit %}
+        {% if guest.visit == 'да' %}
+            <div class="mt-1 flex flex-col justify-center items-center text-center">
+                <span>Будем Вас ждать!</span>
+            </div>
+        {% elif guest.visit == 'нет' %}
+            <div class="mt-1 flex flex-col justify-center items-center text-center">
+                <span>Жаль что Вы не придете</span>
+            </div>
+        {% endif %}
+    {% else %}
+    {% comment %} Анкета {% endcomment %}
     <div class="flex flex-col items-center w-full my-10">
         <form id="attendanceForm" class="w-full flex flex-col items-center md:w-4/6 md:pl-30 md:ml-auto md:mr-auto" method="post">
             {% csrf_token %}
-            <span class="text-xl text-center w-full text-left">Вы придете?</span>
+            <span class="text-xl text-center w-full">Вы придете?</span>
             <div class="flex flex-col items-start w-full">
-                <label class="inline-flex items-center">
+                <label class="ml-10 md:ml-60 inline-flex items-center">
                     <input type="radio" name="attendance" value="yes" required/>
-                    <span class="ml-2">Да</span>
+                    <span class="ml-2">с удовольствием!</span>
                 </label>
-                <label class="inline-flex items-center">
+                <label class="ml-10 md:ml-60 inline-flex items-center">
                     <input type="radio" name="attendance" value="no" required/>
-                    <span class="ml-2">Нет</span>
+                    <span class="ml-2">к сожалению, не смогу</span>
                 </label>
             </div>
             <div id="additional-fields" class="mt-4 hidden flex flex-col items-start w-full">
-                <div id="good-response" class="mb-4 text-left w-full">
-                    Мы очень рады!
+                <div id="good-response" class="text-2xl mb-4 text-center w-full">
+                    Мы очень рады что вы придете!
                 </div>
-                <div class="mt-5 w-full flex flex-col items-start">
+                {% comment %} <div class="mt-5 w-full flex flex-col items-start">
                     <span class="text-xl text-left w-full">Вам понадобится трансфер на мероприятие?</span>
                     <label class="inline-flex items-center">
                         <input id="toTransferYes" type="radio" name="to_transfer" value="yes" required/>
@@ -133,30 +181,58 @@
                         <span class="ml-2">{{ city.name }}</span>
                     </label>                    
                     {% endfor %}
-                </div>
+                </div> {% endcomment %}
                 <div id="drinks" class="mt-5 w-full flex flex-col items-start">
-                    <span class="text-xl text-left w-full">Какие напитки предпочитаете?</span>
+                    <span class="text-xl text-center w-full">Какие напитки предпочитаете?</span>
                     {% for drink in drinks %}
-                    <div class="w-full text-left">
+                    <div class="ml-10 md:ml-60 text-left">
                         <input type="checkbox" id="{{ drink.name }}" name="{{ drink.name }}"/>
                         <label for="drink">{{ drink.name }}</label>
                     </div>                   
                     {% endfor %}
                 </div>
             </div>
-            <div id="sad-response" class="mt-4 hidden text-left w-full">
-                Очень жаль, что вы не сможете присоединиться к нам.
+            <div id="sad-response" class="text-2xl mt-4 hidden text-center w-full">
+                Где-то загрустил один жених и одна невеста...
             </div>
             <button type="submit" class="mt-4 bg-white font-bold py-2 px-4 rounded border border-2 border-black hover:bg-black hover:text-white">Отправить</button>
         </form>
     </div>
-    
+    {% endif %}
+    {% comment %} Обратный отсчет {% endcomment %}
+    <div class="mt-5 text-center">
+        <div class="my-10 w-full flex flex-col items-center text-center text-2xl">
+            <div class="mr-10 w-full flex justify-center px-4">
+                <span class="">До свадьбы</span>
+            </div>
+            <div class="ml-16 w-full flex justify-center px-4">
+                <span class="whitespace-nowrap">осталось:</span>
+            </div>
+        </div>
+        <div id="countdown" class="flex flex-row justify-center items-center font-bold gap-10">
+            <div id="days" class="flex flex-col text-center"></div> 
+            <div id="hours" class="flex flex-col text-center"></div> 
+            <div id="minutes" class="flex flex-col text-center"></div> 
+            <div id="seconds" class="flex flex-col text-center"></div>
+        </div>
+        <script src="{% static 'js/countdown.js' %}"></script> 
+    </div>
     <script src="{% static 'js/form.js' %}"></script> 
 
-    <div id="map" class="h-96 w-full md:w-3/4 lg:w-1/2 mx-auto my-4 shadow-2xl rounded-xl"></div>
-
+    <div class="my-10 w-full flex flex-col items-center text-center text-4xl">
+        <div class="mr-16 w-full flex justify-center px-4">
+            <span class="font-Great">С любовью,</span>
+        </div>
+        <div class="ml-10 w-full flex justify-center px-4">
+            <span class="font-Great whitespace-nowrap">{{ groom }} и {{ bride }}</span>
+        </div>
+    </div>
+    
+    {% comment %} карта {% endcomment %}
     <script src="https://api-maps.yandex.ru/2.1/?apikey=fdsfF32rasdf&lang=ru_RU" type="text/javascript"></script>
-
+    <div class="mt-0 flex flex-row justify-center items-center">
+        <div id="map" class="h-96 w-full mx-auto my-4 shadow-2xl rounded-xl"></div>
+    </div>
     <script src="{% static 'js/map.js' %}"></script>
 
     

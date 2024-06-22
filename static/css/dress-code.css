@@ -1,0 +1,42 @@
+.color-block {
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    display: inline-block;
+}
+.color1 {
+    background-color: #C4C4C4; /* Примерный цвет первого круга */
+}
+.color2 {
+    background-color: #D7B7A2; /* Примерный цвет второго круга */
+}
+.color3 {
+    background-color: #D3A48A; /* Примерный цвет третьего круга */
+}
+.color4 {
+    background-color: #B9966F; /* Примерный цвет четвертого круга */
+}
+.color5 {
+    background-color: #E4C6B6; /* Примерный цвет пятого круга */
+}
+.color6 {
+    background-color: #C3C5A1; /* Примерный цвет шестого круга */
+}
+.color7 {
+    background-color: #D5B4A2; /* Примерный цвет седьмого круга */
+}
+.color8 {
+    background-color: #E4D9CB; /* Примерный цвет восьмого круга */
+}
+.color9 {
+    background-color: #E2E2E2; /* Примерный цвет девятого круга */
+}
+.color10 {
+    background-color: #BEC7A0; /* Примерный цвет десятого круга */
+}
+.color11 {
+    background-color: #AAB7A2; /* Примерный цвет одиннадцатого круга */
+}
+.color12 {
+    background-color: #C4C4C4; /* Примерный цвет двенадцатого круга */
+}

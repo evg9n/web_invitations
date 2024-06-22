@@ -2,7 +2,20 @@
 {% load static %}
 <html lang="ru">
 <head>
-    
+    <script src="three.r134.min.js"></script>
+<script src="vanta.birds.min.js"></script>
+<script>
+VANTA.BIRDS({
+  el: "#your-element-selector",
+  mouseControls: true,
+  touchControls: true,
+  gyroControls: false,
+  minHeight: 200.00,
+  minWidth: 200.00,
+  scale: 1.00,
+  scaleMobile: 1.00
+})
+</script>
     <link rel="stylesheet" href="{% static 'css/load.css' %}">      
     
     <meta charset="UTF-8">
@@ -12,10 +25,9 @@
 </head>
 <body class="bg-white">
     <div id="loading-screen" class="bg-white min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-        <div class="sm:mx-auto sm:w-full sm:max-w-md text-center">
-            <h2 class="text-4xl font-extrabold text-gray-900 sm:text-5xl">
-                <img src="{% static 'img/heart-svgrepo-com.svg' %}" class="" alt="Здесь должно быть сердечко) Но что-то пошло не так...">
-            </h2>
+        <div class="sm:mx-auto sm:w-full sm:max-w-md text-center mx-5">
+            {% comment %} <img src="{% static 'img/photo.jpeg' %}" class="animate-bounce rounded-lg" alt="Здесь должно быть фото молодоженов) Но что-то пошло не так..."> {% endcomment %}
+            <img src="{% static 'img/304.gif' %}" class="animate-bounce rounded-lg" alt="Здесь должно быть фото молодоженов) Но что-то пошло не так...">
         </div>
     </div>
     {% comment %} <div id="loading-screen" class="flex">
@@ -26,10 +38,11 @@
     <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
     <link rel="stylesheet" href="{% static 'css/animation.css' %}">
     <link rel="stylesheet" href="{% static 'css/load.css' %}">
+    {% block links %}{% endblock links %}
     <script src="{% static 'js/signature.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
     {% block scripts %}{% endblock scripts %}
-    <div id="content" class="mx-5 md:mx-10 font-mono hidden">
+    <div id="content" class="font-EB mx-5 md:mx-10 hidden">
         {% block content %}{% endblock %}
     </div>
     <div id="particles-js"></div>

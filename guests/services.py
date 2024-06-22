@@ -48,13 +48,13 @@ MONTHS = dict(
 
 def get_context() -> dict:
     date = datetime(year=c.YEAR, month=c.MONTH, day=c.DAY, hour=c.HOUR, minute=c.MINUTES)
-    date_js = date.strftime(' %d, %Y %H:%M:%S')
-
+    # date_js = date.strftime(' %d, %Y %H:%M:%S')
+    date_js = date.strftime('%Y-%m-%d %H:%M:%S')
     # date_js = 'July 24, 2024 13:00:00'
     full_date = date.strftime('%d.%m.%Y')
     setlocale(LC_ALL, 'ru_RU.UTF-8')
     name_month = month_name[date.month]
-    date_js = f"{MONTHS.get(name_month)}" + str(date_js)
+    # date_js = f"{MONTHS.get(name_month)}" + str(date_js)
     name_week_day = date.strftime('%A')
     context = dict(
         drinks=get_drinks(),
@@ -75,3 +75,20 @@ def get_context() -> dict:
     )
 
     return context
+
+
+def answers_guest(guest: m.GuestModel, request_post) -> bool:
+    attendance = request_post.get('attendance')
+    if attendance == 'yes':
+        drinks = m.DrinkModel.objects.filter(is_active=True)
+        guest.visit = 'да'
+        for drink in drinks:
+            if request_post.get(drink):
+                guest.drinks.add(drink)
+    elif attendance == 'no':
+        guest.visit = 'нет'
+    else:
+        return False
+
+    guest.save()
+    return False

@@ -5,7 +5,18 @@ module.exports = {
     './static/js/**/*.js'
   ],
   theme: {
-    extend: {},
+    extend: {
+        fontFamily: {
+           Cinzel: ["Cinzel", "serif"],
+           Dancing: ["Dancing Script", "cursive"],
+           Great: ["Great Vibes", "cursive"],
+           Julius: ["Julius Sans One", "cursive"],
+           EB: ["EB Garamond", "cursive"],
+           },
+        margin: {
+           '81': '20rem',
+           },
+    },
   },
   plugins: [],
 }

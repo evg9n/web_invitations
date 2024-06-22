@@ -4,11 +4,11 @@ document.querySelectorAll('input[name="attendance"]').forEach(radio => {
             document.getElementById('additional-fields').classList.remove('hidden');
             document.getElementById('sad-response').classList.add('hidden');
 
-            document.getElementById('toTransferYes').setAttribute('required', '')
-            document.getElementById('toTransferNo').setAttribute('required', '')
+            // document.getElementById('toTransferYes').setAttribute('required', '')
+            // document.getElementById('toTransferNo').setAttribute('required', '')
 
-            document.getElementById('fromTransferYes').setAttribute('required', '')
-            document.getElementById('fromTransferNo').setAttribute('required', '')
+            // document.getElementById('fromTransferYes').setAttribute('required', '')
+            // document.getElementById('fromTransferNo').setAttribute('required', '')
             
             var elements = document.getElementsByClassName('sad-text');
 
@@ -29,11 +29,11 @@ document.querySelectorAll('input[name="attendance"]').forEach(radio => {
             document.getElementById('additional-fields').classList.add('hidden');
             document.getElementById('sad-response').classList.remove('hidden');
 
-            document.getElementById('toTransferYes').removeAttribute('required')
-            document.getElementById('toTransferNo').removeAttribute('required')
+            // document.getElementById('toTransferYes').removeAttribute('required')
+            // document.getElementById('toTransferNo').removeAttribute('required')
 
-            document.getElementById('fromTransferYes').removeAttribute('required')
-            document.getElementById('fromTransferNo').removeAttribute('required')
+            // document.getElementById('fromTransferYes').removeAttribute('required')
+            // document.getElementById('fromTransferNo').removeAttribute('required')
 
             document.getElementById('particles-js').style.display = 'none';
             showSadText()

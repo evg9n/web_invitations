@@ -1,10 +1,11 @@
+// const updateInterval = setInterval(updateCountdown, 1000);
 const countdownElement = document.getElementById('countdown');
 const daysElement = document.getElementById('days');
 const minutesElement = document.getElementById('minutes');
 const hoursElement = document.getElementById('hours');
 const secondsElement = document.getElementById('seconds');
-const date = document.getElementById('date').innerHTML
-const targetDate = new Date(date).getTime();
+const date = document.getElementById('date').innerHTML.trim();
+const targetDate = new Date(date.replace(" ", "T")).getTime();
 
 function updateCountdown() {
     const now = new Date().getTime();
@@ -15,10 +16,10 @@ function updateCountdown() {
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    daysElement.innerHTML = `<span class="text-xl">${days}</span><span class="font-light">Дней</span>`
-    hoursElement.innerHTML = `<span class="text-xl">${hours}</span><span class="font-light">Часа</span>`
-    minutesElement.innerHTML = `<span class="text-xl">${minutes}</span><span class="font-light">Минут</span>`
-    secondsElement.innerHTML = `<span class="text-xl">${seconds}</span><span class="font-light">Секунд</span>`
+    daysElement.innerHTML = `<span class="text-xl">${days}</span><span class="font-light">Дней</span>`;
+    hoursElement.innerHTML = `<span class="text-xl">${hours}</span><span class="font-light">Часа</span>`;
+    minutesElement.innerHTML = `<span class="text-xl">${minutes}</span><span class="font-light">Минут</span>`;
+    secondsElement.innerHTML = `<span class="text-xl">${seconds}</span><span class="font-light">Секунд</span>`;
 
     if (distance < 0) {
         clearInterval(updateInterval);
