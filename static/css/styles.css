@@ -566,6 +566,10 @@ video {
   position: static;
 }
 
+.fixed{
+  position: fixed;
+}
+
 .absolute{
   position: absolute;
 }
@@ -616,10 +620,6 @@ video {
 
 .ml-10{
   margin-left: 2.5rem;
-}
-
-.ml-16{
-  margin-left: 4rem;
 }
 
 .ml-2{
@@ -768,12 +768,12 @@ video {
   gap: 2.5rem;
 }
 
-.gap-11{
-  gap: 2.75rem;
-}
-
 .gap-4{
   gap: 1rem;
+}
+
+.gap-5{
+  gap: 1.25rem;
 }
 
 .whitespace-nowrap{
@@ -885,6 +885,11 @@ video {
   font-size: 10rem;
 }
 
+.text-lg{
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
 .text-xl{
   font-size: 1.25rem;
   line-height: 1.75rem;
@@ -894,12 +899,12 @@ video {
   font-weight: 700;
 }
 
-.font-light{
-  font-weight: 300;
-}
-
 .font-extrabold{
   font-weight: 800;
+}
+
+.font-light{
+  font-weight: 300;
 }
 
 .uppercase{
