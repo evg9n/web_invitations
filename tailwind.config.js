@@ -7,8 +7,7 @@ module.exports = {
   theme: {
     extend: {
         fontFamily: {
-           Cinzel: ["Cinzel", "serif"],
-           Dancing: ["Dancing Script", "cursive"],
+           Spectral: ["Spectral SC", "serif"],
            Great: ["Great Vibes", "cursive"],
            Julius: ["Julius Sans One", "cursive"],
            EB: ["EB Garamond", "cursive"],

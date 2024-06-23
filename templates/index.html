@@ -2,21 +2,24 @@
 {% load static %}
 <html lang="ru">
 <head>
-    <script src="three.r134.min.js"></script>
-<script src="vanta.birds.min.js"></script>
-<script>
-VANTA.BIRDS({
-  el: "#your-element-selector",
-  mouseControls: true,
-  touchControls: true,
-  gyroControls: false,
-  minHeight: 200.00,
-  minWidth: 200.00,
-  scale: 1.00,
-  scaleMobile: 1.00
-})
-</script>
-    <link rel="stylesheet" href="{% static 'css/load.css' %}">      
+    <link rel="shortcut icon" href="{% static 'img/rings_101949.ico' %}" type="image/x-icon">
+      
+    {% if message %}
+    <script>
+        function showPopup() {
+            const popup = document.getElementById('popup');
+            const all_content = document.getElementById('content');
+            setTimeout(() => {
+                popup.classList.add('hidden')
+                all_content.classList.remove('hidden')
+            }, 5000);
+        }
+
+        window.onload = showPopup;
+    </script>
+    {% else %}
+    <link rel="stylesheet" href="{% static 'css/load.css' %}"> 
+    {% endif %}   
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,12 +27,22 @@ VANTA.BIRDS({
     {% block title %}{% endblock %}
 </head>
 <body class="bg-white">
-    <div id="loading-screen" class="bg-white min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-        <div class="sm:mx-auto sm:w-full sm:max-w-md text-center mx-5">
-            {% comment %} <img src="{% static 'img/photo.jpeg' %}" class="animate-bounce rounded-lg" alt="Здесь должно быть фото молодоженов) Но что-то пошло не так..."> {% endcomment %}
-            <img src="{% static 'img/304.gif' %}" class="animate-bounce rounded-lg" alt="Здесь должно быть фото молодоженов) Но что-то пошло не так...">
+    {% if message %}
+    <div id="popup" class="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div class="sm:mx-auto sm:w-full sm:max-w-md text-center">
+            <span class="fixed text-4xl font-extrabold text-gray-900 sm:text-5xl">
+                {{ message }}
+            </span>
         </div>
     </div>
+    {% else %}
+    <div id="loading-screen" class="bg-white min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div class="sm:mx-auto sm:w-full sm:max-w-md text-center mx-5">
+            <img src="{% static 'img/photo.jpeg' %}" class="animate-bounce rounded-lg" alt="Здесь должно быть фото молодоженов) Но что-то пошло не так...">
+            {% comment %} <img src="{% static 'img/304.gif' %}" class="animate-bounce rounded-lg" alt="Здесь должно быть фото молодоженов) Но что-то пошло не так..."> {% endcomment %}
+        </div>
+    </div>
+    {% endif %}
     {% comment %} <div id="loading-screen" class="flex">
         <img src="{% static 'img/heart-svgrepo-com.svg' %}" alt="Свадебная анимация">
     </div> {% endcomment %}

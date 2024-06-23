@@ -22,13 +22,13 @@
     {% comment %} Обложка {% endcomment %}
     <div class="mt-10 text-center">
         <div class="relative">
-            <span class="text-[10rem] leading-none text-gray-400">{{ groom | slice:":1"}}{{ bride | slice:":1"}}</span>
-            <span class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-black text-3xl whitespace-nowrap">{{ groom }} и {{ bride }}</span>
+            <span class="font-Spectral text-[10rem] leading-none text-gray-400">{{ groom | slice:":1"}}{{ bride | slice:":1"}}</span>
+            <span class="font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-black text-3xl whitespace-nowrap">{{ groom }} и {{ bride }}</span>
         </div>
     </div>    
     {% comment %} Обращение к гостю {% endcomment %}
-    <div class="mt-10 flex flex-col justify-center items-center text-center">
-        <h1 class="font-Great text-2xl great-vibes-regula">{{ guest.name_guest }}!</h1>
+    <div class="text-xl mt-10 flex flex-col justify-center items-center text-center">
+        <h1 class="font-Great text-4xl great-vibes-regula">{{ guest.name_guest }}!</h1>
         <span class="mt-2 md:w-1/2">
             От всего сердца приглашаем Вас на очень радостное и важное для нас событие - рождение нашей семьи!
             <br>
@@ -36,7 +36,7 @@
         </span>
     </div>
     {% comment %} Календарь {% endcomment %}
-    <div class="mt-10 flex flex-col justify-center items-center text-center">
+    <div class="text-lg mt-10 flex flex-col justify-center items-center text-center">
         <h1 id="monthYear"></h1>
         <div class="calendar" id="calendar"></div>
         <script src="{% static 'js/calendar.js' %}"></script>
@@ -49,23 +49,23 @@
 
     {% comment %} Место проведения {% endcomment %}
     <div class="mt-10 flex flex-col justify-center items-center text-center">
-        <h2 class="text-2xl">Место проведения</h2>
+        <h2 class="text-2xl font-bold">Место проведения</h2>
         {% comment %} <span class="mt-2 md:w-1/2">
             {{ full_date }}
         </span>
         <span class="mt-2 md:w-1/2">
             {{ time }}
         </span> {% endcomment %}
-        <span class="mt-2 md:w-1/2">
+        <span class="text-xl mt-2 md:w-1/2">
             {{ place }}
         </span>
     </div>
     {% comment %} Расписание  {% endcomment %}
     {% if events %}
     <div class="mt-10 md:mx-81 flex flex-col justify-center items-center border border-2 border-black px-2 rounded-md">
-        <h2 class="text-2xl text-center mb-5">Программа дня</h2>
+        <h2 class="text-2xl font-bold text-center mb-5">Программа дня</h2>
         {% for event in events %}
-        <div class="mb-1 flex flex-row justify-center items-center w-full md:w-3/4 gap-11">
+        <div class="text-xl mb-1 flex flex-row justify-center items-center w-full md:w-3/4 gap-5">
             <span class="w-1/4">{{ event.time_event }}</span>
             <span class="w-3/4 flex flex-col text-left">{{ event.description }}</span>
         </div>
@@ -75,8 +75,8 @@
     {% comment %} Дресс-код {% endcomment %}
     <div class="mt-10 flex flex-col justify-center items-center text-center">
         {% comment %} <div class="max-w-md mx-auto bg-white shadow-md rounded-lg p-6"> {% endcomment %}
-        <h2 class="text-2xl text-center mb-4">Дресс-код</h2>
-        <span class="text-center mb-4">
+        <h2 class="text-2xl font-bold text-center mb-4">Дресс-код</h2>
+        <span class="text-xl ext-center mb-4">
             Для нас главное - ваше присутсвие!
             <br>
             Но будем рады, если вы придержитесь цветовой палитры вечера:
@@ -114,18 +114,18 @@
     </div> {% endcomment %}
     {% if guest.visit %}
         {% if guest.visit == 'да' %}
-            <div class="mt-1 flex flex-col justify-center items-center text-center">
+            <div class="text-2xl mt-5 flex flex-col justify-center items-center text-center">
                 <span>Будем Вас ждать!</span>
             </div>
         {% elif guest.visit == 'нет' %}
-            <div class="mt-1 flex flex-col justify-center items-center text-center">
+            <div class="text-2xl mt-5 flex flex-col justify-center items-center text-center">
                 <span>Жаль что Вы не придете</span>
             </div>
         {% endif %}
     {% else %}
     {% comment %} Анкета {% endcomment %}
     <div class="flex flex-col items-center w-full my-10">
-        <form id="attendanceForm" class="w-full flex flex-col items-center md:w-4/6 md:pl-30 md:ml-auto md:mr-auto" method="post">
+        <form id="attendanceForm" class="text-xl w-full flex flex-col items-center md:w-4/6 md:pl-30 md:ml-auto md:mr-auto" method="post">
             {% csrf_token %}
             <span class="text-xl text-center w-full">Вы придете?</span>
             <div class="flex flex-col items-start w-full">
@@ -201,15 +201,15 @@
     {% endif %}
     {% comment %} Обратный отсчет {% endcomment %}
     <div class="mt-5 text-center">
-        <div class="my-10 w-full flex flex-col items-center text-center text-2xl">
+        <div class="font-Spectral my-10 w-full flex flex-col items-center text-center text-4xl">
             <div class="mr-10 w-full flex justify-center px-4">
                 <span class="">До свадьбы</span>
             </div>
-            <div class="ml-16 w-full flex justify-center px-4">
+            <div class="ml-10 w-full flex justify-center px-4">
                 <span class="whitespace-nowrap">осталось:</span>
             </div>
         </div>
-        <div id="countdown" class="flex flex-row justify-center items-center font-bold gap-10">
+        <div id="countdown" class="text-xl flex flex-row justify-center items-center font-bold gap-10">
             <div id="days" class="flex flex-col text-center"></div> 
             <div id="hours" class="flex flex-col text-center"></div> 
             <div id="minutes" class="flex flex-col text-center"></div> 

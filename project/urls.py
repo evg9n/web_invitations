@@ -22,7 +22,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('my-admin/here-adminka/', admin.site.urls),
     path('', include('guests.urls')),
 ]
 

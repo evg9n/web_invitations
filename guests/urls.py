@@ -3,5 +3,6 @@ from . import views as v
 
 
 urlpatterns = [
-    path('<slug:slug>', v.invitation, name="Страница приглашения")
+    path('', v.main_page, name="Страница приглашения"),
+    path('<slug:slug>', v.invitation, name="Страница приглашения"),
 ]

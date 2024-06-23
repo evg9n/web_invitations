@@ -7,10 +7,36 @@ from . import models as m
 @admin.register(m.GuestModel)
 class GuestModelAdmin(admin.ModelAdmin):
     list_display = 'name', 'view_link',
+    readonly_fields = ('view_link', 'date_time_answer', )
 
-    # def get_fieldsets(self, request, obj=None):
-    #     if obj and obj.visit:
-    #         ...
+    def get_fieldsets(self, request, obj=None):
+        if obj is None or obj.pk is None:
+            fieldsets = (
+                (None, {
+                    'fields': ('name', 'name_guest',)
+                }),
+            )
+        elif obj.visit:
+            if obj.visit == 'да':
+                fieldsets = (
+                    (None, {
+                        'fields': ('name', 'name_guest', 'view_link', 'visit', 'drinks', 'date_time_answer', )
+                    }),
+                )
+            else:
+                fieldsets = (
+                    (None, {
+                        'fields': ('name', 'name_guest', 'view_link', 'visit', 'date_time_answer', )
+                    }),
+                )
+        else:
+            fieldsets = (
+                (None, {
+                    'fields': ('name', 'name_guest', 'view_link', )
+                }),
+            )
+
+        return fieldsets
 
     def view_link(self, obj):
         # Возвращает HTML-код ссылки
@@ -18,9 +44,9 @@ class GuestModelAdmin(admin.ModelAdmin):
     view_link.short_description = "Ссылка на статью"
 
 
-@admin.register(m.CityModel)
-class CityModelAdmin(admin.ModelAdmin):
-    pass
+# @admin.register(m.CityModel)
+# class CityModelAdmin(admin.ModelAdmin):
+#     pass
 
 
 @admin.register(m.DrinkModel)

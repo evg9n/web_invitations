@@ -26,7 +26,7 @@ def get_events():
     """
     получаем события
     """
-    return m.EventModel.objects.filter(is_active=True)
+    return m.EventModel.objects.filter(is_active=True).order_by('time_event')
 
 
 def get_guest(slug: str):
@@ -89,6 +89,6 @@ def answers_guest(guest: m.GuestModel, request_post) -> bool:
         guest.visit = 'нет'
     else:
         return False
-
+    guest.date_time_answer = datetime.now()
     guest.save()
-    return False
+    return True
