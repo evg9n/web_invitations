@@ -41,7 +41,7 @@ class GuestModelAdmin(admin.ModelAdmin):
     def view_link(self, obj):
         # Возвращает HTML-код ссылки
         return format_html("<a href='{url}'>Просмотр</a>", url=obj.get_absolute_url())
-    view_link.short_description = "Ссылка на статью"
+    view_link.short_description = "Ссылка на пригласительный"
 
 
 # @admin.register(m.CityModel)
