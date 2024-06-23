@@ -32,7 +32,7 @@
         <span class="mt-2 md:w-1/2">
             От всего сердца приглашаем Вас на очень радостное и важное для нас событие - рождение нашей семьи!
             <br>
-            Будем рады, если вы разделите этот счастливый и долгожданный с нами и подарите нам свои улыбки!
+            Будем рады, если вы разделите этот счастливый и долгожданный день с нами и подарите нам свои улыбки!
         </span>
     </div>
     {% comment %} Календарь {% endcomment %}
@@ -77,7 +77,7 @@
         {% comment %} <div class="max-w-md mx-auto bg-white shadow-md rounded-lg p-6"> {% endcomment %}
         <h2 class="text-2xl font-bold text-center mb-4">Дресс-код</h2>
         <span class="text-xl ext-center mb-4">
-            Для нас главное - ваше присутсвие!
+            Для нас главное - ваше присутствие!
             <br>
             Но будем рады, если вы придержитесь цветовой палитры вечера:
         </span>
@@ -125,6 +125,7 @@
     {% else %}
     {% comment %} Анкета {% endcomment %}
     <div class="flex flex-col items-center w-full my-10">
+        <h2 class="text-2xl font-bold text-center mb-4">Анкета</h2>
         <form id="attendanceForm" class="text-xl w-full flex flex-col items-center md:w-4/6 md:pl-30 md:ml-auto md:mr-auto" method="post">
             {% csrf_token %}
             <span class="text-xl text-center w-full">Вы придете?</span>
