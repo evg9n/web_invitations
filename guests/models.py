@@ -21,7 +21,8 @@ class EventModel(BaseModel):
     """
     name = models.CharField(max_length=128, unique=True, verbose_name='Имя события')
     description = models.CharField(max_length=256, verbose_name='Описание')
-    time_event = models.TimeField(unique=True, verbose_name='Время начала события')
+    time_event = models.TimeField(verbose_name='Время начала события')
+    date = models.DateField(null=True, blank=True, verbose_name='Дата начала события')
 
     def __str__(self):
         return f"{self.name}"
@@ -29,6 +30,7 @@ class EventModel(BaseModel):
     class Meta:
         verbose_name = "событие"
         verbose_name_plural = 'события'
+        unique_together = 'date', 'time_event',
 
 
 class DrinkModel(BaseModel):

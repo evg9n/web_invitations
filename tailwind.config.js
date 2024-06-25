@@ -12,6 +12,7 @@ module.exports = {
            Julius: ["Julius Sans One", "cursive"],
            EB: ["EB Garamond", "cursive"],
            Comforter: ["Comforter", "cursive"],
+           Forum: ["Forum", "serif"],
            },
         margin: {
            '81': '20rem',

@@ -49,7 +49,7 @@
 
     {% comment %} Место проведения {% endcomment %}
     <div class="mt-10 flex flex-col justify-center items-center text-center">
-        <h2 class="text-2xl font-bold">Место проведения</h2>
+        <h2 class="text-2xl font-Forum">Место проведения</h2>
         {% comment %} <span class="mt-2 md:w-1/2">
             {{ full_date }}
         </span>
@@ -63,7 +63,7 @@
     {% comment %} Расписание  {% endcomment %}
     {% if events %}
     <div class="mt-10 md:mx-81 flex flex-col justify-center items-center border border-2 border-black px-2 rounded-md">
-        <h2 class="text-2xl font-bold text-center mb-5">Программа дня</h2>
+        <h2 class="text-2xl font-Forum text-center mb-5">Программа дня</h2>
         {% for event in events %}
         <div class="text-xl mb-1 flex flex-row justify-center items-center w-full md:w-3/4 gap-5">
             <span class="w-1/4">{{ event.time_event }}</span>
@@ -75,7 +75,7 @@
     {% comment %} Дресс-код {% endcomment %}
     <div class="mt-10 flex flex-col justify-center items-center text-center">
         {% comment %} <div class="max-w-md mx-auto bg-white shadow-md rounded-lg p-6"> {% endcomment %}
-        <h2 class="text-2xl font-bold text-center mb-4">Дресс-код</h2>
+        <h2 class="text-2xl font-Forum text-center mb-4">Дресс-код</h2>
         <span class="text-xl ext-center mb-4">
             Для нас главное - ваше присутствие!
             <br>
@@ -125,7 +125,7 @@
     {% else %}
     {% comment %} Анкета {% endcomment %}
     <div class="flex flex-col items-center w-full my-10">
-        <h2 class="text-2xl font-bold text-center mb-4">Анкета</h2>
+        <h2 class="text-2xl font-Forum text-center mb-4">Анкета</h2>
         <form id="attendanceForm" class="text-xl w-full flex flex-col items-center md:w-4/6 md:pl-30 md:ml-auto md:mr-auto" method="post">
             {% csrf_token %}
             <span class="text-xl text-center w-full">Вы придете?</span>
@@ -196,7 +196,7 @@
             <div id="sad-response" class="text-2xl mt-4 hidden text-center w-full">
                 Где-то загрустил один жених и одна невеста...
             </div>
-            <button type="submit" class="mt-4 bg-white font-bold py-2 px-4 rounded border border-2 border-black hover:bg-black hover:text-white">Отправить</button>
+            <button type="submit" class="mt-4 bg-white font-Forum py-2 px-4 rounded border border-2 border-black hover:bg-black hover:text-white">Отправить</button>
         </form>
     </div>
     {% endif %}

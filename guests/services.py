@@ -26,7 +26,7 @@ def get_events():
     """
     получаем события
     """
-    return m.EventModel.objects.filter(is_active=True).order_by('time_event')
+    return m.EventModel.objects.filter(is_active=True).order_by('date', 'time_event')
 
 
 def get_guest(slug: str):

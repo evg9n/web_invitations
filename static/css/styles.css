@@ -8,6 +8,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Comforter&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Forum&display=swap');
+
 /*
 ! tailwindcss v3.4.4 | MIT License | https://tailwindcss.com
 */
@@ -856,6 +858,10 @@ video {
   text-align: center;
 }
 
+.font-Comforter{
+  font-family: Comforter, cursive;
+}
+
 .font-EB{
   font-family: EB Garamond, cursive;
 }
@@ -868,18 +874,13 @@ video {
   font-family: Spectral SC, serif;
 }
 
-.font-Comforter{
-  font-family: Comforter, cursive;
+.font-Forum{
+  font-family: Forum, serif;
 }
 
 .text-2xl{
   font-size: 1.5rem;
   line-height: 2rem;
-}
-
-.text-3xl{
-  font-size: 1.875rem;
-  line-height: 2.25rem;
 }
 
 .text-4xl{
@@ -891,6 +892,10 @@ video {
   font-size: 10rem;
 }
 
+.text-\[3rem\]{
+  font-size: 3rem;
+}
+
 .text-lg{
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -899,18 +904,6 @@ video {
 .text-xl{
   font-size: 1.25rem;
   line-height: 1.75rem;
-}
-
-.text-\[2rem\]{
-  font-size: 2rem;
-}
-
-.text-\[5rem\]{
-  font-size: 5rem;
-}
-
-.text-\[3rem\]{
-  font-size: 3rem;
 }
 
 .font-bold{
@@ -1056,24 +1049,12 @@ video {
     width: 66.666667%;
   }
 
-  .md\:text-\[5rem\]{
-    font-size: 5rem;
-  }
-
-  .md\:text-\[10rem\]{
-    font-size: 10rem;
-  }
-
-  .md\:text-\[8rem\]{
-    font-size: 8rem;
-  }
-
-  .md\:text-\[6rem\]{
-    font-size: 6rem;
-  }
-
   .md\:text-\[4rem\]{
     font-size: 4rem;
+  }
+
+  .md\:text-\[5rem\]{
+    font-size: 5rem;
   }
 }
 
