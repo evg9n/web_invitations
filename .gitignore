@@ -178,4 +178,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # img
-static/img/photo.jpeg
+static/img/photo.*
