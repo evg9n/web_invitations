@@ -6,8 +6,10 @@ from . import models as m
 
 @admin.register(m.GuestModel)
 class GuestModelAdmin(admin.ModelAdmin):
-    list_display = 'name', 'view_link',
+    list_display = 'name', 'view_link', 'visit',
     readonly_fields = ('view_link', 'date_time_answer', )
+    list_filter = 'visit', 'drinks',
+    search_fields = 'name', 'name_guest',
 
     def get_fieldsets(self, request, obj=None):
         if obj is None or obj.pk is None:
@@ -56,4 +58,4 @@ class DrinkModelAdmin(admin.ModelAdmin):
 
 @admin.register(m.EventModel)
 class EventModelAdmin(admin.ModelAdmin):
-    pass
+    list_display = 'name', 'description', 'time_event',
