@@ -11,6 +11,7 @@ module.exports = {
            Great: ["Great Vibes", "cursive"],
            Julius: ["Julius Sans One", "cursive"],
            EB: ["EB Garamond", "cursive"],
+           Comforter: ["Comforter", "cursive"],
            },
         margin: {
            '81': '20rem',
