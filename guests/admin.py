@@ -6,7 +6,7 @@ from . import models as m
 
 @admin.register(m.GuestModel)
 class GuestModelAdmin(admin.ModelAdmin):
-    list_display = 'name', 'view_link', 'visit',
+    list_display = 'name', 'view_link', 'visit', 'date_time_answer',
     readonly_fields = ('view_link', 'date_time_answer', )
     list_filter = 'visit', 'drinks',
     search_fields = 'name', 'name_guest',
