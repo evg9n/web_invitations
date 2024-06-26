@@ -83,7 +83,7 @@ def answers_guest(guest: m.GuestModel, request_post) -> bool:
         drinks = m.DrinkModel.objects.filter(is_active=True)
         guest.visit = 'да'
         for drink in drinks:
-            if request_post.get(drink):
+            if request_post.get(drink.name):
                 guest.drinks.add(drink)
     elif attendance == 'no':
         guest.visit = 'нет'
