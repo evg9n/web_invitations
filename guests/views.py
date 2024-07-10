@@ -1,7 +1,13 @@
+from io import BytesIO
+
 from django.shortcuts import render
 from django.http import HttpResponseNotFound
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import api_view, permission_classes
+from django.http import HttpResponse
+from xlsxwriter import Workbook
 
-from guests.services import get_context, get_guest, answers_guest
+from guests.services import get_context, get_guest, answers_guest, generate_excel
 
 
 def main_page(request):
@@ -36,3 +42,15 @@ def invitation(request, **kwargs):
                 return render(request=request, template_name='invitation.html', context=context)
 
     return HttpResponseNotFound('What do you want from me?')
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def generate_file_result(request):
+    if request.method == "GET":
+        output = generate_excel(request)
+        # Отправляем файл в ответе
+        response = HttpResponse(output.read(),
+                                content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        response['Content-Disposition'] = 'attachment; filename="example.xlsx"'
+        return response

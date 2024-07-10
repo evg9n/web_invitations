@@ -23,6 +23,7 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('my-admin/here-adminka/', admin.site.urls),
+    path('api/v1/', include('api.urls')),
     path('', include('guests.urls')),
 ]
 

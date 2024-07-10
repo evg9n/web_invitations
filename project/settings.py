@@ -46,10 +46,14 @@ INSTALLED_APPS = [
 ]
 
 # Дополнительные приложения
-INSTALLED_APPS += []
+INSTALLED_APPS += [
+    'rest_framework',
+    'rest_framework.authtoken',
+]
 
 # мои приложения
 INSTALLED_APPS += [
+    'api.apps.ApiConfig',
     'guests.apps.GuestsConfig',
 ]
 
@@ -66,6 +70,12 @@ MIDDLEWARE = [
 # мои middlewares
 MIDDLEWARE += [
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
 
 ROOT_URLCONF = 'project.urls'
 
