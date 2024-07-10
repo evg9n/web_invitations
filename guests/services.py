@@ -154,6 +154,7 @@ def generate_excel(request) -> BytesIO:
     ws.write(row, 1, '2', format_cell)
     ws.write(row, 2, '3', format_cell)
     ws.write(row, 3, '4', format_cell)
+    ws.write(row, 4, '5', format_cell)
 
     format_cell = get_style(wb, align='center', valign='vcenter', text_wrap=True, border=1)
 
