@@ -124,6 +124,7 @@ celerybeat.pid
 #env/.env
 env/*.env
 venv/
+.venv/
 ../env/
 env.bak/
 venv.bak/
@@ -179,3 +180,8 @@ yarn-error.log*
 
 # img
 static/img/photo.*
+
+# markdown
+*.md
+!README.md
+!README.md
